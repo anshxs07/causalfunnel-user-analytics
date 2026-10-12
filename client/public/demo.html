@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopDemo — User Tracking Demo</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: #155eef;
+      color: white;
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 45px auto;
+      padding: 0 20px;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 22px;
+    }
+
+    .product {
+      background: white;
+      padding: 25px;
+      border-radius: 14px;
+      border: 1px solid #e1e7f0;
+    }
+
+    .emoji {
+      font-size: 65px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .product p { color: #64748b; }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: 0;
+      border-radius: 8px;
+      background: #155eef;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #104ac4; }
+
+    #message {
+      margin-top: 25px;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>ShopDemo</strong>
+    <span>Analytics Test Store</span>
+  </header>
+
+  <main>
+    <h1>Discover our products</h1>
+    <p>Interact with this page to generate tracking events.</p>
+
+    <section class="products">
+      <article class="product">
+        <div class="emoji">🎧</div>
+        <h2>Wireless Headphones</h2>
+        <p>₹1,499</p>
+        <button data-product="Headphones">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <div class="emoji">⌚</div>
+        <h2>Smart Watch</h2>
+        <p>₹2,999</p>
+        <button data-product="Smart Watch">Add to Cart</button>
+      </article>
+
+      <article class="product">
+        <div class="emoji">🎒</div>
+        <h2>Travel Backpack</h2>
+        <p>₹999</p>
+        <button data-product="Backpack">Add to Cart</button>
+      </article>
+    </section>
+
+    <div id="message" role="status">
+      Welcome! Try clicking a product button.
+    </div>
+  </main>
+
+  <script>
+    document.querySelectorAll("[data-product]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById("message").textContent =
+          button.dataset.product + " added to demo cart!";
+      });
+    });
+  </script>
+
+  <script src="/tracker.js"></script>
+</body>
+</html>
